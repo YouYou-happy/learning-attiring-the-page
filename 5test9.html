@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Collapsible Module $mdash; Take 1</title>
+	<style type="text/css">
+		div.module{
+			width: 340px;
+			border: 2px solid #5f5f5f;
+			background-color: white;
+		}
+		div.module div.caption{
+			background: black url('images/module.caption.backg.png');
+			border: 1px solid black;
+			padding: 0 8px;
+			height: 26px;
+			color: white;
+			font-weight: bold;
+		}
+		div.module.rolledup div.caption{
+			background: black url('module.caption.backg.rolledup.png');
+		}
+		div.module div.caption span{
+			float: left;
+			margin-top: 2px;
+		}
+		div.module div.caption img{
+			float: right;
+			cursor: pointer;
+			margin-top: 4px;
+		}
+		
+		div.module div.body{
+			padding: 8px;
+			background-color: white;
+			border-width: 0;
+		}
+	</style>
+	<script type="text/javascript" src="scripts/jquery-1.4.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('div.caption img').click(function(){
+				var body$ = $(this).closest('div.module').find('div.body');
+				if(body$.is(':hidden')) {
+					body$.show();
+				}
+				else {
+					body$.hide();
+				}
+		    });
+		});
+		
+	</script>
+</head>
+<body>
+    <div class="module">
+    	<div class="caption">
+    		<span>Module Caption</span>
+    		<img src="images/rollup.gif" alt="rollup" title="rolls up this module" />
+    	</div>
+    	<div class="body">
+    		Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        Aliquam eget enim id neque aliquet porttitor. Suspendisse
+        nisl enim, nonummy ac, nonummy ut, dignissim ac, justo.
+        Aenean imperdiet semper nibh. Vivamus ligula. In in ipsum
+        sed neque vehicula rhoncus. Nam faucibus pharetra nisi.
+        Integer at metus. Suspendisse potenti. Vestibulum ante
+        ipsum primis in faucibus orci luctus et ultrices posuere
+        cubilia Curae; Proin quis eros at metus pretium elementum.
+    	</div>
+    </div>
+</body>
+</html>
