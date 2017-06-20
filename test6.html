@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Events Example</title>
+    <!-- link rel="stylesheet" type="text/css" href="styles/core.css" /-->
+    <script type="text/javascript" src="scripts/jquery-1.4.js"></script>
+    <script type="text/javascript" src="scripts/jqia2.support.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+            $('#example')
+            .bind('click',function(event){
+                say('BOOM once!');
+            })
+            .bind('click',function(event){
+                say('BOOM twice!');
+            })
+            .bind('click',function(event){
+                say('BOOM three times!');
+            });
+
+            //自定义缩放动画
+        /*    $('.animateMe').each(function(){
+                $(this).animate({
+                    width: $(this).width() * 2,
+                    height: $(this).height() * 2
+                },
+                2000
+                );
+            });*/
+
+            //自定义消退特效的切换方法（）
+        /*    $('.animateMe').animate({opacity:'toggle'},'slow');
+
+            $.fn.fadeToggle = function(speed){
+                return this.animate({opacity: 'toggle'},speed);
+            };
+
+            $('animateMe').fadeToggle(10000);*/
+
+            //自定义掉落动画
+        /*    $('.rectangle').each(function(){
+                $(this)
+                    .css('position','relative')
+                    .animate(
+                      {
+                        opacity: 0,
+                        top: $(window).height() - $(this).height() - $(this).position().top
+                      },
+                      5000,
+                      function(){ $(this).hide(); }
+                    );
+                });
+            */
+            //相同效果实现：opacity的值用hide代替0
+        /*    $('.rectangle').each(function(){
+                $(this)
+                    .css('position','relative')
+                    .animate(
+                      {
+                        opacity: 'hide',        //字符串一定要用''或""括起来
+                        //下式计算不明白，.top中的top是变量top吗？
+                        top: $(window).height() - $(this).height() - $(this).position().top
+                      },
+                      5000
+                    );
+                });*/
+
+            $('.results').html($(window).height()+' '+$('.rectangle').height());
+            //$('result').html($('rectangle').position().top);
+
+            //自定义消散动画
+            $('.animateMe').each(function(){
+                var position = $(this).position();
+                $(this)
+                .css({position: 'absolute',
+                      top: position.top,
+                      left: position.left})
+                .animate(
+                    {
+                        opacity: 'hide',
+                        width: $(this).width() * 3,
+                        height: $(this).height() * 3,
+                        top: position.top - ($(this).height() * 3 / 2),
+                        left: position.left - ($(this).width() * 3 / 2)
+                    },
+                    5000);
+            });
+        });
+        
+    </script>
+    <style type="text/css">
+    img.animateMe{
+        padding: 200px 200px;
+    }
+    div.results,div.result {
+        height: 20px;
+        border: 1px solid black;
+    }
+        div.rectangle{
+            width: 300px;
+            height: 50px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img class="animateMe" id="example" src="images/example.jpg" />
+    </div>
+    <div class="results"></div>
+    <div class="result"></div>
+    <div class="rectangle"></div>
+    
+</body>
+</html>
