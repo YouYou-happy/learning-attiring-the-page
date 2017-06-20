@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="scripts/jquery-1.4.js"></script>
+	<script type="text/javascript" src="scripts/jqia2.support.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			$('img').queue('chain',
+				function(){ 
+					say('First: ' + $(this).attr('alt'));
+					$(this).dequeue('chain');
+				});
+			$('img').queue('chain',
+				function(){ 
+					say('Second: ' + $(this).attr('alt'));
+					$(this).dequeue('chain');
+				 });
+			$('img').queue('chain',
+				function(){ 
+					say('Third: ' + $(this).attr('alt'));
+					$(this).dequeue('chain');
+				 });
+			$('img').queue('chain',
+				function(){ 
+					say('Fourth:' + $(this).attr('alt'));
+					$(this).dequeue('chain');
+				 });
+
+			$('button').click(function(){
+				$('img').dequeue('chain');
+			});
+
+		});
+	</script>
+</head>
+<body>
+    <div>
+    	<img src="images/earth.png" alt="Earth" />
+    	<img src="images/moon.png" alt="Moon" />
+    </div>
+
+    <button type="button" class="green90*24">Dequeue</button>
+
+    <div id="console"></div>
+</body>
+</html>
