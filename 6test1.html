@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hi!</title>
+	<script type="text/javascript" src="scripts/jquery-1.4.js"></script>
+	<script type="text/javascript">
+		var $ = 'Hi!';
+		jQuery(function($){
+			alert('$ = ' + $);
+		});
+
+		//--- 实用函数 ---
+
+		//修剪字符串：$.trim(value)
+		$('#someField').val($.trim($('#someField').val()));
+
+		//JS中遍历元素的方法
+		var anArray = ['one','two','three'];
+		for(var n=0; n<anArray.length; n++) {
+			//do something here
+		}
+
+		var anObject = {one:1, two:2, three:3};
+		for(var p in anObject) {
+			//do something here
+		}
+
+		//遍历数组中的项目or对象中的属性： 
+		//$.each(container, callback)  ——内联函数
+		var anArray = ['one','two','three'];
+		$.each(anArray,function(name,value){
+			//do something here
+		});
+
+		var anObject = {one:1, two:2, three:3};
+		$.each(anObject,function(name,value){
+			//do something here
+		});
+		//编写可重用的迭代器
+		$.each(anArray,someComplexFunction);
+
+		//3.筛选数组：$.grep(array, callback, invert)
+		//筛选数组中所有大于100的值
+		var bigNumbers = $.grep(originalArray, function(value) {
+			return value > 100;
+		});
+
+		//美国邮政编码(Zip编码)：5个十进制数，破折号，4个十进制数，正则表达式:/^\d{5}(-\d{4})?$/
+		//从源数组中过滤不符合标准的数据项
+		var badZips = $.grep(
+			originalArray,
+			function(value){
+			    return value.match(/^\d{5}(-\d{4})?$/) != null;
+		    },
+		    true);
+
+		//4.转换数组：$.map(array, callback)
+		var oneBased = $.map([0,1,2,3,4], function(value){return value+1;});
+
+		//$.map()将字符串数组转换为相应的Number实例的数组
+		var strings = ['1','2','3','4','S','6'];
+		var values = $.map(strings, function(value){
+			var result = new Number(value);
+			return isNaN(result) ? null : result;
+		});
+		//$.map()处理从转换函数返回数组的情况
+		var characters = $.map(
+			['this','that','other thing'],
+			function(value){return value.split('');}
+		);
+
+		//检查某个JS数组是否包含特定值，该值在数组中的位置：$.inArray(value, array)
+		var index = $.inArray(2,[1,2,3,4,5]); 
+
+		//从其他类似数组的对象创建JS数组：$.makeArray(object)
+		//其他类似数组的对象：拥有长度和下标项概念的任何对象 e.g.NodeList对象
+		var images = document.getElementsByTagName('img');
+
+		//处理非jQuery创建的数组：$.unique(array) ————传入DOM元素数组
+
+		//合并两个数组：$.merge(array1,array2)
+
+		//扩展对象：$.extend(deep,target,source1,...,sourceN)
+		var target = { a:1, b:2, c:3 };
+		var source1 = { c:4, d:5, e:6 };
+		var source2 = { e:7, f:8, g:9 };
+		$.extend(target,source1,source2);
+
+		//序列化参数值，格式化的查询字符串：$.param(params,traditional)
+		$.param({
+			'a thing':'it&s=value',
+			'another thing':'another value',
+			'weird characters':'!@#$%^&*()_+='
+		});
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
